@@ -2552,7 +2552,8 @@ h5 {
   }
 }
 
-.cart {
+.cart,
+.wishlist {
   padding: 52px 0;
 
   .cart__intro {
@@ -2566,7 +2567,8 @@ h5 {
     }
   }
 
-  .cart__title {
+  .cart__title,
+  .wishlist__title {
     font-size: 20px;
     font-weight: 700;
     line-height: 140%;

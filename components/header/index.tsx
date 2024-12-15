@@ -14,6 +14,7 @@ type HeaderType = {
 const Header = ({ isErrorPage }: HeaderType) => {
   const router = useRouter();
   const { cartItems } = useSelector((state: RootState) => state.cart);
+  const { wishlistItems } = useSelector((state: RootState) => state.wishlist);
   const arrayPaths = ["/"];
 
   const [onTop, setOnTop] = useState(
@@ -100,8 +101,8 @@ const Header = ({ isErrorPage }: HeaderType) => {
           <Link href="/wishlist" legacyBehavior>
             <button className="btn-wish">
               <i className="icon-heart" />
-              {cartItems.length > 0 && (
-                <span className="btn-wish__count">{cartItems.length}</span>
+              {wishlistItems.length > 0 && (
+                <span className="btn-wish__count">{wishlistItems.length}</span>
               )}
             </button>
           </Link>
