@@ -1,14 +1,40 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductStoreType } from './../../types/index';
 
-interface wishlistType {
-    wishedItems: ProductStoreType[];
+// create types
+interface wishlistTypes {
+    wishlistItems: ProductStoreType[];
 };
 
-type AddWishedProductType = {
-    product: ProductStoreType,
-    count: number
-};
+// type AddWishlistProductType = {
+//     product: ProductStoreType,
+//     count: number
+// };
 
+// initialize state for wished items
 const initialState = {
-    wishedItems: []
-} as wishlistType;
+    wishlistItems: []
+} as wishlistTypes;
+
+// function for find product index in wishlist
+const findProductInWishlist = (state: wishlistTypes, product: ProductStoreType) => {
+    return state.wishlistItems.findIndex(item => item.id === product.id);
+};
+
+const shoppingWishlistSlice = createSlice({
+    name: 'wishlist',
+    initialState,
+    reducers: {
+        // function for add product to wishlist
+        addProductToWishlist: (state, action: PayloadAction<ProductStoreType>) => {
+            const existingProductIndex = findProductInWishlist(state, action.payload);
+
+
+            if (existingProductIndex === -1) {
+                state.wishlistItems.push(action.payload);
+            }
+        }
+    }
+});
+
+export default shoppingWishlistSlice.reducer;
