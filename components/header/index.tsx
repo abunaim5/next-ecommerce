@@ -97,6 +97,14 @@ const Header = ({ isErrorPage }: HeaderType) => {
               className="icon-search"
             />
           </button>
+          <Link href="/wish" legacyBehavior>
+            <button className="btn-wish">
+              <i className="icon-heart" />
+              {cartItems.length > 0 && (
+                <span className="btn-wish__count">{cartItems.length}</span>
+              )}
+            </button>
+          </Link>
           <Link href="/cart" legacyBehavior>
             <button className="btn-cart">
               <i className="icon-cart" />
