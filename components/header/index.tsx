@@ -97,7 +97,7 @@ const Header = ({ isErrorPage }: HeaderType) => {
               className="icon-search"
             />
           </button>
-          <Link href="/wish" legacyBehavior>
+          <Link href="/wishlist" legacyBehavior>
             <button className="btn-wish">
               <i className="icon-heart" />
               {cartItems.length > 0 && (

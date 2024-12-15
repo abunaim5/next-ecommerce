@@ -37,4 +37,6 @@ const shoppingWishlistSlice = createSlice({
     }
 });
 
+export const { addProductToWishlist } = shoppingWishlistSlice.actions;
+
 export default shoppingWishlistSlice.reducer;
