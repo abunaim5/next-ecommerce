@@ -9,7 +9,7 @@ import type { ProductStoreType, ProductType, ProductTypeList } from "types";
 import productsColors from "../../../utils/data/products-colors";
 import productsSizes from "../../../utils/data/products-sizes";
 import CheckboxColor from "../../products-filter/form-builder/checkbox-color";
-import { addProductToWishlist } from "store/reducers/wishlist";
+import { addProductToWishlist, removeProductFromWishlist } from "store/reducers/wishlist";
 import Trash from "assets/icons/trash";
 
 type ProductContent = {
@@ -77,6 +77,21 @@ const Content = ({ product }: ProductContent) => {
     };
 
     dispatch(addProductToWishlist(wishlistProductStore));
+  };
+
+  // remove wishlist product from localstorage
+  const removeFromWishlist = () => {
+    dispatch(
+      removeProductFromWishlist({
+        id,
+        name,
+        price,
+        color: colors,
+        images,
+        discount,
+        currentPrice
+      }),
+    );
   };
 
   return (
@@ -159,7 +174,7 @@ const Content = ({ product }: ProductContent) => {
             </button>
             <button
               type="button"
-              onClick={() => { toggleFav(), addToWishlist() }}
+              onClick={() => (toggleFav(), isFavourite ? removeFromWishlist() : addToWishlist())}
               className={`btn-heart ${isFavourite ? "btn-heart--active" : ""} wishlist_tooltip`}
             >
               {

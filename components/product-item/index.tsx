@@ -71,7 +71,7 @@ const ProductItem = ({
         <button
           type="button"
           onClick={() => { location === '/wishlist' ? (removeFromWishlist(), toggleFav()) : isFavourite ? '' : (addToWishlist(), toggleFav()) }}
-          className={`btn-heart ${isFavourite ? "btn-heart--active" : ""} wishlist_tooltip`}
+          className={`btn-heart ${location === '/wishlist' ? '' : isFavourite ? "btn-heart--active" : ''} wishlist_tooltip`}
         >
           {
             location !== '/wishlist' ? <i className='icon-heart' /> : <Trash />
