@@ -2556,7 +2556,8 @@ h5 {
 .wishlist {
   padding: 52px 0;
 
-  .cart__intro {
+  .cart__intro,
+  .wishlist__intro {
     display: flex;
     align-items: center;
     margin-bottom: 35px;

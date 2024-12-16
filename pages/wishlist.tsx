@@ -13,7 +13,11 @@ const WishlistProducts = () => {
         <Layout>
             <section className='wishlist'>
                 <div className='container'>
-                    <h1 className='wishlist__title'>Wishlist</h1>
+                    <div className='wishlist__intro'>
+                        <h1 className='wishlist__title'>Wishlist</h1>
+                        <button className='btn btn--rounded btn--yellow'>Clear</button>
+                    </div>
+
                     <div className='products-list'>
                         {
                             wishlistItems.length > 0 ? (wishlistItems.map((item: ProductTypeList, idx: number) => <ProductItem
