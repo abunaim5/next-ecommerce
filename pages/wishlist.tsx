@@ -5,11 +5,20 @@ import { RootState } from "store";
 import ProductItem from "components/product-item";
 import { ProductTypeList } from "types";
 import { clearWishlist } from "store/reducers/wishlist";
+import { toggleFavProduct } from "store/reducers/user";
 
 const WishlistProducts = () => {
     const { wishlistItems } = useSelector((state: RootState) => state.wishlist);
     const dispatch = useDispatch();
-    // console.log('Wishlist items', wishlistItems);
+
+    // clear favorite list when clicking clear all wishlist product
+    const toggleFav = (id: string) => {
+        dispatch(
+            toggleFavProduct({
+                id
+            }),
+        );
+    };
 
     // clear all wishlist products
     const clearAllWishlist = () => {
@@ -24,7 +33,7 @@ const WishlistProducts = () => {
                 <div className='container'>
                     <div className='wishlist__intro'>
                         <h1 className='wishlist__title'>Wishlist</h1>
-                        <button onClick={clearAllWishlist} className={`btn btn--rounded btn--yellow ${wishlistItems.length === 0 ? 'btn--disabled' : ''}`}>Clear</button>
+                        <button onClick={() => (clearAllWishlist(), wishlistItems.map(item => toggleFav(item.id)))} className={`btn btn--rounded btn--yellow ${wishlistItems.length === 0 ? 'btn--disabled' : ''}`}>Clear</button>
                     </div>
 
                     <div className='products-list'>
