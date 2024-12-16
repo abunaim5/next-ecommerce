@@ -32,10 +32,19 @@ const shoppingWishlistSlice = createSlice({
             if (existingProductIndex === -1) {
                 state.wishlistItems.push(action.payload.product);
             }
+        },
+
+        // function for remove product from wishlist
+        removeProductFromWishlist: (state, action: PayloadAction<ProductTypeList>) => {
+            const productIndex = findProductInWishlist(state, action.payload);
+
+            if (productIndex !== -1) {
+                state.wishlistItems.splice(productIndex, 1)
+            }
         }
     }
 });
 
-export const { addProductToWishlist } = shoppingWishlistSlice.actions;
+export const { addProductToWishlist, removeProductFromWishlist } = shoppingWishlistSlice.actions;
 
 export default shoppingWishlistSlice.reducer;

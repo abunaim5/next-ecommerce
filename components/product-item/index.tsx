@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "store";
 import { toggleFavProduct } from "store/reducers/user";
-import { addProductToWishlist } from "store/reducers/wishlist";
+import { addProductToWishlist, removeProductFromWishlist } from "store/reducers/wishlist";
 import type { ProductTypeList } from "types";
 import Trash from '../../assets/icons/trash'
 
@@ -50,12 +50,27 @@ const ProductItem = ({
     dispatch(addProductToWishlist(wishlistProductStore));
   };
 
+  // remove wishlist product from localstorage
+  const removeFromWishlist = () => {
+    dispatch(
+      removeProductFromWishlist({
+        id: id,
+        name: name,
+        price: price,
+        color: color,
+        images: images,
+        discount: discount,
+        currentPrice: currentPrice
+      }),
+    );
+  };
+
   return (
     <div className="product-item">
       <div className="product__image">
         <button
           type="button"
-          onClick={() => { toggleFav(), isFavourite ? '' : addToWishlist() }}
+          onClick={() => { toggleFav(), location === '/wishlist' ? removeFromWishlist() : isFavourite ? '' : addToWishlist() }}
           className={`btn-heart ${isFavourite ? "btn-heart--active" : ""} wishlist_tooltip`}
         >
           {
