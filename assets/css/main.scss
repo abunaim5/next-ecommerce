@@ -3157,6 +3157,30 @@ h5 {
   position: relative;
 }
 
+.tooltip_top {
+  bottom: 120%;
+  left: 50%;
+  margin-left: -60px;
+
+  &:after {
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-color: black transparent transparent transparent;
+  }
+}
+
+.tooltip_left {
+  right: 115%;
+
+  &:after {
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-color: transparent transparent transparent black;
+  }
+}
+
 .wishlist_tooltip_text {
   visibility: hidden;
   font-size: 12px;
@@ -3172,12 +3196,8 @@ h5 {
   &:after {
     content: " ";
     position: absolute;
-    top: 50%;
-    left: 100%;
-    margin-top: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent transparent black;
   }
 }
 

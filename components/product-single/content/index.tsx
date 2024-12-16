@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "store";
 import { addProduct } from "store/reducers/cart";
 import { toggleFavProduct } from "store/reducers/user";
-import type { ProductStoreType, ProductType } from "types";
+import type { ProductStoreType, ProductType, ProductTypeList } from "types";
 
 import productsColors from "../../../utils/data/products-colors";
 import productsSizes from "../../../utils/data/products-sizes";
 import CheckboxColor from "../../products-filter/form-builder/checkbox-color";
+import { addProductToWishlist } from "store/reducers/wishlist";
+import Trash from "assets/icons/trash";
 
 type ProductContent = {
   product: ProductType;
@@ -19,6 +21,7 @@ const Content = ({ product }: ProductContent) => {
   const [count, setCount] = useState<number>(1);
   const [color, setColor] = useState<string>("");
   const [itemSize, setItemSize] = useState<string>("");
+  const { id, name, price, color: colors, images, discount, currentPrice } = product;
 
   const onColorSet = (e: string) => setColor(e);
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
@@ -40,10 +43,10 @@ const Content = ({ product }: ProductContent) => {
 
   const addToCart = () => {
     const productToSave: ProductStoreType = {
-      id: product.id,
-      name: product.name,
-      thumb: product.images ? product.images[0] : "",
-      price: product.currentPrice,
+      id: id,
+      name: name,
+      thumb: images ? images[0] : "",
+      price: currentPrice,
       count,
       color,
       size: itemSize,
@@ -55,6 +58,25 @@ const Content = ({ product }: ProductContent) => {
     };
 
     dispatch(addProduct(productStore));
+  };
+
+  // add wishlist product in localstorage
+  const addToWishlist = () => {
+    const saveWishlistProduct: ProductTypeList = {
+      id,
+      name,
+      price,
+      color: colors,
+      images,
+      discount,
+      currentPrice
+    };
+
+    const wishlistProductStore = {
+      product: saveWishlistProduct,
+    };
+
+    dispatch(addProductToWishlist(wishlistProductStore));
   };
 
   return (
@@ -137,10 +159,13 @@ const Content = ({ product }: ProductContent) => {
             </button>
             <button
               type="button"
-              onClick={toggleFav}
-              className={`btn-heart ${isFavourite ? "btn-heart--active" : ""}`}
+              onClick={() => { toggleFav(), addToWishlist() }}
+              className={`btn-heart ${isFavourite ? "btn-heart--active" : ""} wishlist_tooltip`}
             >
-              <i className="icon-heart" />
+              {
+                isFavourite ? <Trash /> : <i className="icon-heart" />
+              }
+              <span className="tooltip_top wishlist_tooltip_text">{isFavourite ? 'Remove Wishlist' : 'Add to Wishlist'}</span>
             </button>
           </div>
         </div>

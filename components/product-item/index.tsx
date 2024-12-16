@@ -76,7 +76,7 @@ const ProductItem = ({
           {
             location !== '/wishlist' ? <i className='icon-heart' /> : <Trash />
           }
-          <span className="wishlist_tooltip_text">{location === '/wishlist' ? 'Remove Wishlist' : isFavourite ? 'Browse Wishlist' : 'Add to Wishlist'}</span>
+          <span className="tooltip_left wishlist_tooltip_text">{location === '/wishlist' ? 'Remove Wishlist' : isFavourite ? 'Browse Wishlist' : 'Add to Wishlist'}</span>
         </button>
 
         <Link href={`/product/${id}`}>
