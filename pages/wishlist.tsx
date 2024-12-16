@@ -1,13 +1,22 @@
 import Footer from "components/footer";
 import Layout from "../layouts/Main";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store";
 import ProductItem from "components/product-item";
 import { ProductTypeList } from "types";
+import { clearWishlist } from "store/reducers/wishlist";
 
 const WishlistProducts = () => {
     const { wishlistItems } = useSelector((state: RootState) => state.wishlist);
+    const dispatch = useDispatch();
     // console.log('Wishlist items', wishlistItems);
+
+    // clear all wishlist products
+    const clearAllWishlist = () => {
+        dispatch(
+            clearWishlist()
+        );
+    };
 
     return (
         <Layout>
@@ -15,7 +24,7 @@ const WishlistProducts = () => {
                 <div className='container'>
                     <div className='wishlist__intro'>
                         <h1 className='wishlist__title'>Wishlist</h1>
-                        <button className='btn btn--rounded btn--yellow'>Clear</button>
+                        <button onClick={clearAllWishlist} className={`btn btn--rounded btn--yellow ${wishlistItems.length === 0 ? 'btn--disabled' : ''}`}>Clear</button>
                     </div>
 
                     <div className='products-list'>

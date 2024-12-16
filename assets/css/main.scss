@@ -306,6 +306,11 @@ h5 {
     &.btn--yellow {
       background-color: var(--color-orange);
     }
+
+    &.btn--disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
   }
 }
 

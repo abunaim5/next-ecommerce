@@ -41,10 +41,15 @@ const shoppingWishlistSlice = createSlice({
             if (productIndex !== -1) {
                 state.wishlistItems.splice(productIndex, 1)
             }
-        }
+        },
+
+        // Clear the wishlist
+        clearWishlist: (state) => {
+            state.wishlistItems = [];
+        },
     }
 });
 
-export const { addProductToWishlist, removeProductFromWishlist } = shoppingWishlistSlice.actions;
+export const { addProductToWishlist, removeProductFromWishlist, clearWishlist } = shoppingWishlistSlice.actions;
 
 export default shoppingWishlistSlice.reducer;
