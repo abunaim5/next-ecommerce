@@ -6,6 +6,7 @@ import { toggleFavProduct } from "store/reducers/user";
 import { addProductToWishlist, removeProductFromWishlist } from "store/reducers/wishlist";
 import type { ProductTypeList } from "types";
 import Trash from '../../assets/icons/trash'
+import { useRouter } from "next/router";
 
 const ProductItem = ({
   discount,
@@ -17,7 +18,8 @@ const ProductItem = ({
   currentPrice,
 }: ProductTypeList) => {
   const dispatch = useDispatch();
-  let location = window.location.pathname
+  const router = useRouter();
+  let location = window.location.pathname;
   console.log(location);
   const { favProducts } = useSelector((state: RootState) => state.user);
 
@@ -70,7 +72,7 @@ const ProductItem = ({
       <div className="product__image">
         <button
           type="button"
-          onClick={() => { location === '/wishlist' ? (removeFromWishlist(), toggleFav()) : isFavourite ? '' : (addToWishlist(), toggleFav()) }}
+          onClick={() => { location === '/wishlist' ? (removeFromWishlist(), toggleFav()) : isFavourite ? router.push('/wishlist') : (addToWishlist(), toggleFav()) }}
           className={`btn-heart ${location === '/wishlist' ? '' : isFavourite ? "btn-heart--active" : ''} wishlist_tooltip`}
         >
           {
