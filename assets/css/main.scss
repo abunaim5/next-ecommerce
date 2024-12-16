@@ -3147,6 +3147,38 @@ h5 {
   }
 }
 
+.wishlist_tooltip {
+  position: relative;
+}
+
+.wishlist_tooltip_text {
+  visibility: hidden;
+  font-size: 12px;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  position: absolute;
+  z-index: 100;
+  right: 115%;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+  }
+}
+
+.wishlist_tooltip:hover .wishlist_tooltip_text {
+  visibility: visible;
+}
+
 .error-page {
   display: flex;
   align-items: center;

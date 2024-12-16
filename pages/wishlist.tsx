@@ -7,7 +7,7 @@ import { ProductTypeList } from "types";
 
 const WishlistProducts = () => {
     const { wishlistItems } = useSelector((state: RootState) => state.wishlist);
-    console.log('Wishlist items', wishlistItems);
+    // console.log('Wishlist items', wishlistItems);
 
     return (
         <Layout>

@@ -16,6 +16,8 @@ const ProductItem = ({
   currentPrice,
 }: ProductTypeList) => {
   const dispatch = useDispatch();
+  let location = window.location.pathname
+  console.log(location);
   const { favProducts } = useSelector((state: RootState) => state.user);
 
   const isFavourite = some(favProducts, (productId) => productId === id);
@@ -28,6 +30,7 @@ const ProductItem = ({
     );
   };
 
+  // add wishlist product in localstorage
   const addToWishlist = () => {
     const saveWishlistProduct: ProductTypeList = {
       id: id,
@@ -51,10 +54,11 @@ const ProductItem = ({
       <div className="product__image">
         <button
           type="button"
-          onClick={() => { toggleFav(), addToWishlist() }}
-          className={`btn-heart ${isFavourite ? "btn-heart--active" : ""}`}
+          onClick={() => { toggleFav(), isFavourite ? '' : addToWishlist() }}
+          className={`btn-heart ${isFavourite ? "btn-heart--active" : ""} wishlist_tooltip`}
         >
           <i className="icon-heart" />
+          <span className="wishlist_tooltip_text">{location === '/wishlist' ? 'Remove Wishlist' : isFavourite ? 'Browse Wishlist' : 'Add to Wishlist'}</span>
         </button>
 
         <Link href={`/product/${id}`}>
