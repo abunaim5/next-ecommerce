@@ -5,6 +5,7 @@ import type { RootState } from "store";
 import { toggleFavProduct } from "store/reducers/user";
 import { addProductToWishlist } from "store/reducers/wishlist";
 import type { ProductTypeList } from "types";
+import Trash from '../../assets/icons/trash'
 
 const ProductItem = ({
   discount,
@@ -57,7 +58,9 @@ const ProductItem = ({
           onClick={() => { toggleFav(), isFavourite ? '' : addToWishlist() }}
           className={`btn-heart ${isFavourite ? "btn-heart--active" : ""} wishlist_tooltip`}
         >
-          <i className="icon-heart" />
+          {
+            location !== '/wishlist' ? <i className='icon-heart' /> : <Trash />
+          }
           <span className="wishlist_tooltip_text">{location === '/wishlist' ? 'Remove Wishlist' : isFavourite ? 'Browse Wishlist' : 'Add to Wishlist'}</span>
         </button>
 
