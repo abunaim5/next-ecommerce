@@ -99,10 +99,10 @@ const Header = ({ isErrorPage }: HeaderType) => {
             />
           </button>
           <Link href="/wishlist" legacyBehavior>
-            <button className="btn-wish">
+            <button className="btn-wishlist">
               <i className="icon-heart" />
               {wishlistItems.length > 0 && (
-                <span className="btn-wish__count">{wishlistItems.length}</span>
+                <span className="btn-wishlist__count">{wishlistItems.length}</span>
               )}
             </button>
           </Link>

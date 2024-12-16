@@ -6,6 +6,10 @@ interface wishlistTypes {
     wishlistItems: ProductTypeList[];
 };
 
+type AddWishlistProductType = {
+    product: ProductTypeList,
+};
+
 // initialize state for wished items
 const initialState = {
     wishlistItems: []
@@ -21,12 +25,12 @@ const shoppingWishlistSlice = createSlice({
     initialState,
     reducers: {
         // function for add product to wishlist
-        addProductToWishlist: (state, action: PayloadAction<ProductTypeList>) => {
-            const existingProductIndex = findProductInWishlist(state, action.payload);
+        addProductToWishlist: (state, action: PayloadAction<AddWishlistProductType>) => {
+            const existingProductIndex = findProductInWishlist(state, action.payload.product);
 
 
             if (existingProductIndex === -1) {
-                state.wishlistItems.push(action.payload);
+                state.wishlistItems.push(action.payload.product);
             }
         }
     }
